@@ -1,46 +1,74 @@
 import React, { useState } from "react";
-import './ExpenseForm.css';
+import "./ExpenseForm.css";
 
 const ExpenseForm = () => {
-    const [enteredTitle , setEnteredTitle] = useState('');
-    const [enteredAmount , setEnteredAmount] = useState('');
-    const [enteredDate , setEnteredDate] = useState('');
-    
-    const titleChangeHandler = (event) => {
-        setEnteredTitle(event.target.value);
-    };
+  //   const [enteredTitle, setEnteredTitle] = useState("");
+  //   const [enteredAmount, setEnteredAmount] = useState("");
+  //   const [enteredDate, setEnteredDate] = useState("");
 
-    const amountChangeHandler = (event) => {
-        setEnteredAmount(event.target.value);
-    };
+  const [userInput, setUserInput] = useState({
+    enteredTitle: "",
+    enteredAmount: "",
+    enteredDate: "",
+  });
 
-    const dateChangeHandler = (event) => {
-        setEnteredDate(event.target.value);
-    };
+  const titleChangeHandler = (event) => {
+    // setEnteredTitle(event.target.value);
+    setUserInput({
+      ...userInput,
+      enteredTitle: event.targer.value,
+    });
+  };
 
-    return(
-        <form>
-        <div className="new-expense__controls">
-            <div className="new-expense__control">
-                <label>Title</label>
-                <input type='text' onChange={titleChangeHandler}/>
-            </div>
+  const amountChangeHandler = (event) => {
+    //setEnteredAmount(event.target.value);
+    setUserInput({
+        ...userInput,
+        enteredAmount: event.targer.value,
+      });
+  };
 
-            <div className="new-expense__control">
-                <label>Amount</label>
-                <input type='number' min='0.01' step='0.01'/>
-            </div>
-            
-            <div className="new-expense__control">
-                <label>Date</label>
-                <input type='date' min='2019-1-23' max='2023-12-31'/>
-            </div>
+  const dateChangeHandler = (event) => {
+    //setEnteredDate(event.target.value);
+    setUserInput({
+        ...userInput,
+        enteredDate: event.targer.value,
+      });
+  };
+
+  return (
+    <form>
+      <div className="new-expense__controls">
+        <div className="new-expense__control">
+          <label>Title</label>
+          <input type="text" onChange={titleChangeHandler} />
         </div>
-        <div className="new-expense__actions">
-            <button type="submit">Add detail</button>
+
+        <div className="new-expense__control">
+          <label>Amount</label>
+          <input
+            type="number"
+            min="0.01"
+            step="0.01"
+            nChange={amountChangeHandler}
+          />
         </div>
-        </form>
-    );
+
+        <div className="new-expense__control">
+          <label>Date</label>
+          <input
+            type="date"
+            min="2019-1-23"
+            max="2023-12-31"
+            nChange={dateChangeHandler}
+          />
+        </div>
+      </div>
+      <div className="new-expense__actions">
+        <button type="submit">Add detail</button>
+      </div>
+    </form>
+  );
 };
 
 export default ExpenseForm;
